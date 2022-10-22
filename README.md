@@ -5,6 +5,8 @@ A minimalist lightning address bridge
 Host on a domain you own to get a lightning address for a node you own
 with all invocies wrapped by lnproxy so that you don't ever reveal your
 node's pubkey.
+Automatically checks the payment hashes on wrapped invoices,
+so you get privacy without trusting anyone with your funds.
 
 Configuration is 100% manual,
 just make some json files in `user/username` and `node/username`.
