@@ -12,6 +12,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fiatjaf/makeinvoice"
 )
@@ -185,10 +186,10 @@ func lud6Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		inv, err = makeinvoice.MakeInvoice(makeinvoice.Params{
-			Backend:     userNode,
-			Msatoshi:    int64(amt_msat - routing_msat),
-			Description: userParams.metadata(),
-			UseDescriptionHash : true,
+			Backend:            userNode,
+			Msatoshi:           int64(amt_msat - routing_msat),
+			Description:        userParams.metadata(),
+			UseDescriptionHash: true,
 		})
 	case "Sparko":
 		userNode := makeinvoice.SparkoParams{}
@@ -199,10 +200,10 @@ func lud6Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		inv, err = makeinvoice.MakeInvoice(makeinvoice.Params{
-			Backend:     userNode,
-			Msatoshi:    int64(amt_msat - routing_msat),
-			Description: userParams.metadata(),
-			UseDescriptionHash : true,
+			Backend:            userNode,
+			Msatoshi:           int64(amt_msat - routing_msat),
+			Description:        userParams.metadata(),
+			UseDescriptionHash: true,
 		})
 	case "LND":
 		userNode := makeinvoice.LNDParams{}
@@ -213,10 +214,10 @@ func lud6Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		inv, err = makeinvoice.MakeInvoice(makeinvoice.Params{
-			Backend:     userNode,
-			Msatoshi:    int64(amt_msat - routing_msat),
-			Description: userParams.metadata(),
-			UseDescriptionHash : true,
+			Backend:            userNode,
+			Msatoshi:           int64(amt_msat - routing_msat),
+			Description:        userParams.metadata(),
+			UseDescriptionHash: true,
 		})
 	case "LNBits":
 		userNode := makeinvoice.LNBitsParams{}
@@ -227,10 +228,10 @@ func lud6Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		inv, err = makeinvoice.MakeInvoice(makeinvoice.Params{
-			Backend:     userNode,
-			Msatoshi:    int64(amt_msat - routing_msat),
-			Description: userParams.metadata(),
-			UseDescriptionHash : true,
+			Backend:            userNode,
+			Msatoshi:           int64(amt_msat - routing_msat),
+			Description:        userParams.metadata(),
+			UseDescriptionHash: true,
 		})
 	case "Eclair":
 		userNode := makeinvoice.EclairParams{}
@@ -241,10 +242,10 @@ func lud6Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		inv, err = makeinvoice.MakeInvoice(makeinvoice.Params{
-			Backend:     userNode,
-			Msatoshi:    int64(amt_msat - routing_msat),
-			Description: userParams.metadata(),
-			UseDescriptionHash : true,
+			Backend:            userNode,
+			Msatoshi:           int64(amt_msat - routing_msat),
+			Description:        userParams.metadata(),
+			UseDescriptionHash: true,
 		})
 	default:
 		fmt.Fprintf(w, `{"status": "ERROR", "reason": "user details corrupted"}`)
