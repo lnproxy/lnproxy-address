@@ -21,8 +21,8 @@ var (
 	httpPort        = flag.String("http-port", "4760", "http port over which to expose address server")
 	domain          = flag.String("domain", "example.com", "domain of LN SERVICE")
 	lnproxyURL      = flag.String("lnproxy-url", "https://lnproxy.org/api/", "REST host for lnproxy")
-	lnproxyBaseMsat = flag.Uint64("lnproxy-routing-base", 1000, "base routing budget for lnproxy")
-	lnproxyPpmMsat  = flag.Uint64("lnproxy-routing-ppm", 6000, "ppm routing budget for lnproxy")
+	lnproxyBaseMsat = flag.Uint64("lnproxy-routing-base", 2000, "base routing budget for lnproxy")
+	lnproxyPpmMsat  = flag.Uint64("lnproxy-routing-ppm", 10000, "ppm routing budget for lnproxy")
 	lnproxyClient   *http.Client
 )
 
