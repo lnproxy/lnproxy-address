@@ -1,4 +1,4 @@
-module lnproxy-webui
+module lnproxy-address
 
 go 1.19
 
