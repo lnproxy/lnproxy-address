@@ -9,13 +9,13 @@ Automatically checks the payment hashes, amount, and destination, on wrapped inv
 so you get privacy without trusting anyone with your funds.
 
 ```
-usage: ./address [flags] address.macaroon
+usage: address [flags] address.macaroon https://example.com
   address.macaroon
         Path to address macaroon. Generate it with:
                 lncli bakemacaroon --save_to address.macaroon \
                         uri:/invoicesrpc.Invoices/AddInvoice
-  -domain string
-        domain of LN SERVICE (default "example.com")
+  https://example.com
+        Your custom domain
   -lnd string
         host for lnd's REST api (default "https://127.0.0.1:8080")
   -lnd-cert string
