@@ -29,7 +29,6 @@ func (invoicer *LncInvoicer) MakeInvoice(amount_msat uint64, description_hash []
 }
 
 func main() {
-	domain := flag.String("domain", "example.com", "domain of LN SERVICE")
 	username := flag.String("username", "_", "lud6 username")
 	maxAmtMsat := flag.Uint64("max-msat", 10_000_000_000, "max msat per payment")
 	minAmtMsat := flag.Uint64("min-msat", 10_000, "min msat per payment")
@@ -45,18 +44,20 @@ func main() {
 	lnproxyPpm := flag.Uint64("lnproxy-routing-ppm", 10_000, "ppm routing budget for lnproxy relay")
 
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), `usage: %s [flags] address.macaroon
+		fmt.Fprintf(flag.CommandLine.Output(), `usage: %s [flags] address.macaroon https://example.com
   address.macaroon
 	Path to address macaroon. Generate it with:
 		lncli bakemacaroon --save_to address.macaroon \
 			uri:/invoicesrpc.Invoices/AddInvoice
+  https://example.com
+	Your custom domain
 `, os.Args[0])
 		flag.PrintDefaults()
 		os.Exit(2)
 	}
 
 	flag.Parse()
-	if len(flag.Args()) != 1 {
+	if len(flag.Args()) != 2 {
 		flag.Usage()
 		os.Exit(2)
 	}
@@ -66,6 +67,8 @@ func main() {
 		log.Fatalln("unable to read lnproxy macaroon file:", err)
 	}
 	macaroon := hex.EncodeToString(macaroonBytes)
+
+	domain := flag.Args()[1]
 
 	lndHost, err := url.Parse(*lndHostString)
 	if err != nil {
@@ -91,7 +94,7 @@ func main() {
 		},
 	}
 
-	domainURL, err := url.Parse(*domain)
+	domainURL, err := url.Parse(domain)
 	if err != nil {
 		log.Fatalln("unable to parse domain url:", err)
 	}
